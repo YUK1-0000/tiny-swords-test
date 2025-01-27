@@ -42,7 +42,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_edq21")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 10.0
 }, {
 "frames": [{

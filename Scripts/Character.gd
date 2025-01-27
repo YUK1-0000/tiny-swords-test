@@ -15,12 +15,14 @@ extends CharacterBody3D
 @onready var wait_timer: Timer = $WaitTimer
 @onready var wander_timer: Timer = $WanderTimer
 
-enum States {WAITING, CHASEING, ATTACKING}
-var state: States = States.WAITING
+enum States {IDLE, WANDER, CHASE, ATTACK}
+var state: States = States.IDLE
 var target: Character = null
 var current_hp: int = max_hp
 var max_wait_time: int = 5
 var min_wait_time: int = 1
+var max_wander_time: int = 5
+var min_wander_time: int = 1
 
 
 func _ready() -> void:
@@ -45,17 +47,22 @@ func handle_targeting() -> void:
 
 func handle_state() -> void:
 	if target == null:
-		set_state(States.WAITING)
-	elif state != States.ATTACKING:
-		set_state(States.CHASEING)
+		set_state(States.IDLE)
+	elif state != States.ATTACK:
+		set_state(States.CHASE)
 
 
 func handle_velocity() -> void:
-	if state == States.CHASEING:
-		navigation_agent.target_position = target.global_position
-		velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * speed
-	else:
-		velocity = Vector3.ZERO
+	match state:
+		States.WANDER:
+			var dir: Vector2 = Vector2.RIGHT.rotated(randf_range(0, TAU))
+		
+		States.CHASE:
+			navigation_agent.target_position = target.global_position
+			velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * speed
+		
+		_:
+			velocity = Vector3.ZERO
 
 
 func handle_animation() -> void:
@@ -64,9 +71,9 @@ func handle_animation() -> void:
 
 func update_label() -> void:
 	label.text = str(current_hp) + "\n" + (
-		"WAITING" if state == States.WAITING
-		else "CHASING" if state == States.CHASEING
-		else "ATTACKING"
+		"IDLE" if state == States.IDLE
+		else "CHASING" if state == States.CHASE
+		else "ATTACK"
 	)
 
 
@@ -123,4 +130,12 @@ func nearest_cardinal_direction(direction: Vector2) -> Vector2:
 
 
 func _on_attack_area_body_entered(_body: Node3D) -> void:
-	set_state(States.ATTACKING)
+	set_state(States.ATTACK)
+
+
+func _on_wait_timer_timeout() -> void:
+	pass
+
+
+func _on_wander_timer_timeout() -> void:
+	pass

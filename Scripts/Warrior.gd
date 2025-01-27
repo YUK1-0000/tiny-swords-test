@@ -3,12 +3,12 @@ extends Character
 
 
 func handle_targeting() -> void:
-	if state != States.ATTACKING:
+	if state != States.ATTACK:
 		search_for_target()
 
 
 func handle_animation() -> void:
-	if state == States.ATTACKING:
+	if state == States.ATTACK:
 		var dir: Vector3 = global_position.direction_to(target.global_position)
 		var cardinal_dir: Vector2 = nearest_cardinal_direction(Vector2(dir.x, dir.z))
 		
@@ -32,7 +32,7 @@ func handle_animation() -> void:
 			animated_sprite.play("walk")
 			animated_sprite.flip_h = velocity.x < 0
 		else:
-			animated_sprite.play("default")
+			animated_sprite.play("idle")
 
 
 func attack() -> void:

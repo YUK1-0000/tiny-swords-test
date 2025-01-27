@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://swwjcswe2oyg"]
+
+[ext_resource type="PackedScene" uid="uid://d14c0si4ht0kw" path="res://Scenes/Character.tscn" id="1_nnjli"]
+[ext_resource type="SpriteFrames" uid="uid://cniji6n1beaed" path="res://Resources/SpriteFrames/happy_sheep.tres" id="2_6bpx3"]
+[ext_resource type="Script" path="res://Scripts/happy_sheep.gd" id="2_tkm78"]
+
+[node name="HappySheep" instance=ExtResource("1_nnjli")]
+script = ExtResource("2_tkm78")
+
+[node name="AnimatedSprite3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17, 0)
+sprite_frames = ExtResource("2_6bpx3")
+autoplay = "default"
+frame_progress = 0.659992
