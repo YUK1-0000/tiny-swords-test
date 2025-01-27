@@ -28,11 +28,11 @@ func handle_animation() -> void:
 	else:
 		animation_player.stop()
 		
-		if velocity:
+		if velocity == get_gravity():
+			animated_sprite.play("idle")
+		else:
 			animated_sprite.play("walk")
 			animated_sprite.flip_h = velocity.x < 0
-		else:
-			animated_sprite.play("idle")
 
 
 func attack() -> void:

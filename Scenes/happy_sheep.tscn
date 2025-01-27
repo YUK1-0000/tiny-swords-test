@@ -10,5 +10,5 @@ script = ExtResource("2_tkm78")
 [node name="AnimatedSprite3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17, 0)
 sprite_frames = ExtResource("2_6bpx3")
-autoplay = "default"
-frame_progress = 0.659992
+animation = &"idle"
+autoplay = "idle"

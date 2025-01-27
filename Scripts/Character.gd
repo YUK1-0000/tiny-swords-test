@@ -47,15 +47,26 @@ func handle_targeting() -> void:
 
 func handle_state() -> void:
 	if target == null:
-		set_state(States.IDLE)
+		set_state(States.WANDER)
 	elif state != States.ATTACK:
 		set_state(States.CHASE)
 
 
 func handle_velocity() -> void:
+	if state != States.WANDER:
+		wait_timer.stop()
+		wander_timer.stop()
+	
 	match state:
 		States.WANDER:
-			var dir: Vector2 = Vector2.RIGHT.rotated(randf_range(0, TAU))
+			if wander_timer.is_stopped() and wait_timer.is_stopped():
+				var dir: Vector2 = Vector2.RIGHT.rotated(randf_range(0, TAU))
+				velocity = Vector3(dir.x, 0, dir.y) * speed
+				wander_timer.wait_time = randf_range(min_wander_time, max_wander_time)
+				wander_timer.start()
+			
+			elif not wait_timer.is_stopped():
+				velocity = Vector3.ZERO
 		
 		States.CHASE:
 			navigation_agent.target_position = target.global_position
@@ -63,6 +74,8 @@ func handle_velocity() -> void:
 		
 		_:
 			velocity = Vector3.ZERO
+	
+	velocity += get_gravity()
 
 
 func handle_animation() -> void:
@@ -73,8 +86,12 @@ func update_label() -> void:
 	label.text = str(current_hp) + "\n" + (
 		"IDLE" if state == States.IDLE
 		else "CHASING" if state == States.CHASE
-		else "ATTACK"
-	)
+		else "ATTACK" if state == States.ATTACK
+		else "WANDER" if state == States.WANDER
+		else ""
+	) + "\n" + str(wait_timer.time_left) + "\n" + str(wander_timer.time_left)
+	
+	#label.text = ""
 
 
 func set_state(new_state: States) -> void:
@@ -138,4 +155,5 @@ func _on_wait_timer_timeout() -> void:
 
 
 func _on_wander_timer_timeout() -> void:
-	pass
+	wait_timer.wait_time = randf_range(min_wait_time, max_wait_time)
+	wait_timer.start()

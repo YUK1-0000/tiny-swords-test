@@ -70,10 +70,6 @@ spawn_goblin_torch={
 3d_navigation/layer_2="Goblins"
 3d_physics/layer_3="Goblins"
 
-[physics]
-
-3d/default_gravity_vector=Vector3(0, -100, 0)
-
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
