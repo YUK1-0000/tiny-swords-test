@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxsdcwdp6rin5"]
+
+[ext_resource type="Script" path="res://tree.gd" id="1_hvc1e"]
+[ext_resource type="SpriteFrames" uid="uid://5bgi6kwssj7u" path="res://Resources/SpriteFrames/tree.tres" id="2_qgf4r"]
+
+[node name="Tree" type="StaticBody3D"]
+script = ExtResource("1_hvc1e")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.730143, 0)
+texture_filter = 0
+sprite_frames = ExtResource("2_qgf4r")
+autoplay = "default"
+frame_progress = 0.687775

@@ -1,0 +1,114 @@
+[gd_resource type="SpriteFrames" load_steps=16 format=3 uid="uid://b8q35wftbumhk"]
+
+[ext_resource type="Texture2D" uid="uid://ckui1njwjm4pw" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Dead/Dead.png" id="1_xh3tr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4flg"]
+atlas = ExtResource("1_xh3tr")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jskub"]
+atlas = ExtResource("1_xh3tr")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mn43q"]
+atlas = ExtResource("1_xh3tr")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f71vi"]
+atlas = ExtResource("1_xh3tr")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6axv"]
+atlas = ExtResource("1_xh3tr")
+region = Rect2(512, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o74ep"]
+atlas = ExtResource("1_xh3tr")
+region = Rect2(640, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usevw"]
+atlas = ExtResource("1_xh3tr")
+region = Rect2(768, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sakdj"]
+atlas = ExtResource("1_xh3tr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npmlj"]
+atlas = ExtResource("1_xh3tr")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqjuf"]
+atlas = ExtResource("1_xh3tr")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cixa6"]
+atlas = ExtResource("1_xh3tr")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v0mg"]
+atlas = ExtResource("1_xh3tr")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkv1b"]
+atlas = ExtResource("1_xh3tr")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i63bu"]
+atlas = ExtResource("1_xh3tr")
+region = Rect2(768, 0, 128, 128)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4flg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jskub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mn43q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f71vi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6axv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o74ep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usevw")
+}],
+"loop": false,
+"name": &"despawn",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sakdj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npmlj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqjuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cixa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1v0mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkv1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i63bu")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 10.0
+}]

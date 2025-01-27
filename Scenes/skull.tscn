@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6mkwpq2kndp0"]
+
+[ext_resource type="SpriteFrames" uid="uid://b8q35wftbumhk" path="res://Resources/SpriteFrames/skull.tres" id="1_knx6u"]
+[ext_resource type="Script" path="res://Scripts/skull.gd" id="2_dcerr"]
+
+[node name="Skull" type="StaticBody3D"]
+script = ExtResource("2_dcerr")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+texture_filter = 0
+sprite_frames = ExtResource("1_knx6u")
+animation = &"spawn"
+autoplay = "spawn"
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]

@@ -1,0 +1,153 @@
+[gd_scene load_steps=14 format=3 uid="uid://ccyu1mktvta58"]
+
+[ext_resource type="PackedScene" uid="uid://d2p6mwkpmnlcp" path="res://Scenes/hud.tscn" id="1_ofpb7"]
+[ext_resource type="PackedScene" uid="uid://cxcmne5sss12m" path="res://Scenes/knight_warrior.tscn" id="1_tmuvt"]
+[ext_resource type="PackedScene" uid="uid://csqgkwm6jydea" path="res://Scenes/goblin_torch.tscn" id="2_gw2r6"]
+[ext_resource type="PackedScene" uid="uid://cqichug6gr8h7" path="res://Scenes/CharacterSpawner.tscn" id="2_u2wyk"]
+[ext_resource type="Texture2D" uid="uid://dh7b3jo7jiaja" path="res://Assets/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Flat - Copy.png" id="5_kxd74"]
+[ext_resource type="PackedScene" uid="uid://cxsdcwdp6rin5" path="res://Scenes/tree.tscn" id="6_gtgw6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_io8es"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_38mi5"]
+sky_material = SubResource("ProceduralSkyMaterial_io8es")
+
+[sub_resource type="Environment" id="Environment_1a226"]
+background_mode = 2
+sky = SubResource("Sky_38mi5")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v8du4"]
+albedo_texture = ExtResource("5_kxd74")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ginb2"]
+material = SubResource("StandardMaterial3D_v8du4")
+size = Vector2(64, 64)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_n3jhy"]
+vertices = PackedVector3Array(-49.5, 0.5, -49.5, -49.5, 0.5, 49.5, 49.5, 0.5, 49.5, 49.5, 0.5, -49.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3iilp"]
+size = Vector3(100, 1, 100)
+
+[node name="Main" type="Node"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+sky_mode = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1a226")
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ginb2")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_n3jhy")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+visible = false
+size = Vector3(100, 0, 100)
+
+[node name="CSGCylinders" type="Node" parent="NavigationRegion3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5, 0)
+
+[node name="HUD" parent="Camera3D" instance=ExtResource("1_ofpb7")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_3iilp")
+
+[node name="KnightWarriorSpawners" type="Node" parent="."]
+
+[node name="CharacterSpawner" parent="KnightWarriorSpawners" instance=ExtResource("2_u2wyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+spawnable_scene = ExtResource("1_tmuvt")
+spawn_path = NodePath("../../Knights")
+
+[node name="CharacterSpawner2" parent="KnightWarriorSpawners" instance=ExtResource("2_u2wyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -5)
+spawnable_scene = ExtResource("1_tmuvt")
+spawn_path = NodePath("../../Knights")
+
+[node name="CharacterSpawner3" parent="KnightWarriorSpawners" instance=ExtResource("2_u2wyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10)
+spawnable_scene = ExtResource("1_tmuvt")
+spawn_path = NodePath("../../Knights")
+
+[node name="GoblinTorchSpawners" type="Node" parent="."]
+
+[node name="CharacterSpawner" parent="GoblinTorchSpawners" instance=ExtResource("2_u2wyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+spawnable_scene = ExtResource("2_gw2r6")
+spawn_path = NodePath("../../Goblins")
+
+[node name="CharacterSpawner2" parent="GoblinTorchSpawners" instance=ExtResource("2_u2wyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -5)
+spawnable_scene = ExtResource("2_gw2r6")
+spawn_path = NodePath("../../Goblins")
+
+[node name="CharacterSpawner3" parent="GoblinTorchSpawners" instance=ExtResource("2_u2wyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10)
+spawnable_scene = ExtResource("2_gw2r6")
+spawn_path = NodePath("../../Goblins")
+
+[node name="Knights" type="Node" parent="."]
+
+[node name="KnightWarrior" parent="Knights" instance=ExtResource("1_tmuvt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+wall_min_slide_angle = 0.261799
+
+[node name="KnightWarrior2" parent="Knights" instance=ExtResource("1_tmuvt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+wall_min_slide_angle = 0.261799
+
+[node name="Goblins" type="Node" parent="."]
+
+[node name="GoblinTorch" parent="Goblins" instance=ExtResource("2_gw2r6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+wall_min_slide_angle = 0.261799
+
+[node name="GoblinTorch2" parent="Goblins" instance=ExtResource("2_gw2r6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+wall_min_slide_angle = 0.261799
+
+[node name="Skulls" type="Node" parent="."]
+
+[node name="SingleDayTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="DayTimer" type="Timer" parent="."]
+
+[node name="Trees" type="Node" parent="."]
+
+[node name="Tree" parent="Trees" instance=ExtResource("6_gtgw6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45623, 0, -8.18347)
+
+[node name="Tree2" parent="Trees" instance=ExtResource("6_gtgw6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.81132, 0, -2.12165)
+
+[node name="Tree3" parent="Trees" instance=ExtResource("6_gtgw6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59405, 0, -1.70237)
+
+[node name="Tree4" parent="Trees" instance=ExtResource("6_gtgw6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.28223, 0, -5.0808)
+
+[node name="Tree5" parent="Trees" instance=ExtResource("6_gtgw6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.13068, 0, -11.6994)
+
+[node name="Tree6" parent="Trees" instance=ExtResource("6_gtgw6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.61098, 0, -2.0215)
+
+[node name="Tree7" parent="Trees" instance=ExtResource("6_gtgw6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.94796, 0, -3.88058)
