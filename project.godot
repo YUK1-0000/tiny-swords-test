@@ -25,6 +25,8 @@ window/size/viewport_width=2304
 window/size/viewport_height=1296
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
+mouse_cursor/custom_image="res://Assets/Tiny Swords (Update 010)/UI/Pointers/01.png"
+mouse_cursor/custom_image_hotspot=Vector2(22, 17)
 
 [input]
 
@@ -66,9 +68,10 @@ spawn_goblin_torch={
 [layer_names]
 
 3d_navigation/layer_1="Knights"
-3d_physics/layer_2="Knights"
+3d_physics/layer_2="Knight"
 3d_navigation/layer_2="Goblins"
-3d_physics/layer_3="Goblins"
+3d_physics/layer_3="Goblin"
+3d_physics/layer_4="Neutral"
 
 [rendering]
 

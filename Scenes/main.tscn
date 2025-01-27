@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ccyu1mktvta58"]
+[gd_scene load_steps=17 format=3 uid="uid://ccyu1mktvta58"]
 
 [ext_resource type="PackedScene" uid="uid://d2p6mwkpmnlcp" path="res://Scenes/hud.tscn" id="1_ofpb7"]
 [ext_resource type="PackedScene" uid="uid://cxcmne5sss12m" path="res://Scenes/knight_warrior.tscn" id="1_tmuvt"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dh7b3jo7jiaja" path="res://Assets/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Flat - Copy.png" id="5_kxd74"]
 [ext_resource type="PackedScene" uid="uid://cxsdcwdp6rin5" path="res://Scenes/tree.tscn" id="6_gtgw6"]
 [ext_resource type="PackedScene" uid="uid://swwjcswe2oyg" path="res://Scenes/happy_sheep.tscn" id="7_hmxhu"]
+[ext_resource type="PackedScene" uid="uid://cwtx41bk01rqt" path="res://Scenes/deco_16.tscn" id="8_1o0in"]
+[ext_resource type="PackedScene" uid="uid://dk3nh0vr2d2hs" path="res://Scenes/deco_17.tscn" id="9_k4vpf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_io8es"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -125,10 +127,22 @@ wall_min_slide_angle = 0.261799
 
 [node name="Skulls" type="Node" parent="."]
 
-[node name="SingleDayTimer" type="Timer" parent="."]
-autostart = true
+[node name="HappySheeps" type="Node" parent="."]
 
-[node name="DayTimer" type="Timer" parent="."]
+[node name="HappySheep" parent="HappySheeps" instance=ExtResource("7_hmxhu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0709105, 0, 0)
+
+[node name="HappySheep2" parent="HappySheeps" instance=ExtResource("7_hmxhu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="HappySheep3" parent="HappySheeps" instance=ExtResource("7_hmxhu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="HappySheep4" parent="HappySheeps" instance=ExtResource("7_hmxhu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="HappySheep5" parent="HappySheeps" instance=ExtResource("7_hmxhu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
 [node name="Trees" type="Node" parent="."]
 
@@ -153,5 +167,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.61098, 0, -2.0215)
 [node name="Tree7" parent="Trees" instance=ExtResource("6_gtgw6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.94796, 0, -3.88058)
 
-[node name="HappySheep" parent="." instance=ExtResource("7_hmxhu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 2)
+[node name="Decorations" type="Node" parent="."]
+
+[node name="Deco16" parent="Decorations" instance=ExtResource("8_1o0in")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+
+[node name="Deco16_1" parent="Decorations" instance=ExtResource("8_1o0in")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -5)
+
+[node name="Deco16_2" parent="Decorations" instance=ExtResource("8_1o0in")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10)
+
+[node name="Deco17" parent="Decorations" instance=ExtResource("9_k4vpf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="Deco17_1" parent="Decorations" instance=ExtResource("9_k4vpf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -5)
+
+[node name="Deco17_2" parent="Decorations" instance=ExtResource("9_k4vpf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10)
+
+[node name="SingleDayTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="DayTimer" type="Timer" parent="."]

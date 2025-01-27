@@ -18,6 +18,9 @@ const TIME_OF_DAY: int = DAYTIME + NIGHTTIME
 @onready var knights: Node = main.get_node("Knights")
 @onready var goblins: Node = main.get_node("Goblins")
 @onready var skulls: Node = main.get_node("Skulls")
+@onready var happy_sheeps: Node = main.get_node("HappySheeps")
+@onready var trees: Node = main.get_node("Trees")
+@onready var decorations: Node = main.get_node("Decorations")
 @onready var single_day_timer: Timer = main.get_node("SingleDayTimer")
 @onready var day_timer: Timer = main.get_node("DayTimer")
 
@@ -35,6 +38,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	apply_incline()
+	
 	if Input.is_action_just_pressed("spawn_knight_warrior"):
 		spawn_knight_warrior()
 	if Input.is_action_just_pressed("spawn_goblin_torch"):
@@ -47,24 +52,11 @@ func _physics_process(delta: float) -> void:
 	camera.global_position += Vector3(input_vec.x, 0, input_vec.y) * VIEWPOINT_SPEED * delta
 
 
-func get_characters() -> Array:
-	return get_knights() + get_goblins()
-
-
-func get_knights() -> Array:
-	return knights.get_children()
-
-
-func get_goblins() -> Array:
-	return goblins.get_children()
-
-
-func spawn_knight_warrior() -> void:
-	knight_warrior_spawners.get_children().pick_random().spawn()
-
-
-func spawn_goblin_torch() -> void:
-	goblin_torch_spawners.get_children().pick_random().spawn()
+func apply_incline() -> void:
+	for obj: Node in get_characters() + skulls.get_children() + trees.get_children():
+		obj.animated_sprite.rotation.x = camera.rotation.x
+	for deco in decorations.get_children():
+		deco.get_node("Sprite3D").rotation.x = camera.rotation.x
 
 
 func sunrise() -> void:
@@ -77,6 +69,30 @@ func sunrise() -> void:
 func sunset() -> void:
 	for spawner in goblin_torch_spawners.get_children():
 		spawner.spawn()
+
+
+func spawn_knight_warrior() -> void:
+	knight_warrior_spawners.get_children().pick_random().spawn()
+
+
+func spawn_goblin_torch() -> void:
+	goblin_torch_spawners.get_children().pick_random().spawn()
+
+
+func get_characters() -> Array:
+	return get_knights() + get_goblins() + get_happy_sheeps()
+
+
+func get_knights() -> Array:
+	return knights.get_children()
+
+
+func get_goblins() -> Array:
+	return goblins.get_children()
+
+
+func get_happy_sheeps() -> Array:
+	return happy_sheeps.get_children()
 
 
 func _on_character_dead(character: Character) -> void:

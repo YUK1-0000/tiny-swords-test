@@ -7,10 +7,6 @@ extends StaticBody3D
 var is_alive: bool = true
 
 
-func _ready() -> void:
-	animated_sprite.rotation.x = Game.camera.rotation.x
-
-
 func _process(_delta: float) -> void:
 	if is_alive or animated_sprite.is_playing():
 		return

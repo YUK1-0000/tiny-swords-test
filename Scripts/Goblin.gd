@@ -10,3 +10,5 @@ func search_for_target() -> void:
 	else:
 		enemies.sort_custom(sort_near)
 		target = enemies.front()
+		for value: bool in [true, false]:
+			attack_area.get_node("CollisionShape3D").call_deferred("set", "disabled", value)

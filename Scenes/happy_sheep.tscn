@@ -5,6 +5,8 @@
 [ext_resource type="Script" path="res://Scripts/happy_sheep.gd" id="2_tkm78"]
 
 [node name="HappySheep" instance=ExtResource("1_nnjli")]
+collision_layer = 8
+collision_mask = 15
 script = ExtResource("2_tkm78")
 
 [node name="AnimatedSprite3D" parent="." index="1"]

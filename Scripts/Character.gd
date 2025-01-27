@@ -5,6 +5,10 @@ extends CharacterBody3D
 @export var max_hp: int = 10
 @export var damage: int = 1
 @export var speed: float = 1.
+@export var max_wait_time: int = 5
+@export var min_wait_time: int = 0
+@export var max_wander_time: int = 5
+@export var min_wander_time: int = 0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animated_sprite: AnimatedSprite3D = $AnimatedSprite3D
@@ -19,14 +23,6 @@ enum States {IDLE, WANDER, CHASE, ATTACK}
 var state: States = States.IDLE
 var target: Character = null
 var current_hp: int = max_hp
-var max_wait_time: int = 5
-var min_wait_time: int = 1
-var max_wander_time: int = 5
-var min_wander_time: int = 1
-
-
-func _ready() -> void:
-	animated_sprite.rotation.x = Game.camera.rotation.x
 
 
 func _physics_process(_delta: float) -> void:
@@ -71,15 +67,18 @@ func handle_velocity() -> void:
 		States.CHASE:
 			navigation_agent.target_position = target.global_position
 			velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * speed
+			velocity.y = 0
 		
 		_:
 			velocity = Vector3.ZERO
-	
-	velocity += get_gravity()
 
 
 func handle_animation() -> void:
 	pass
+
+
+func apply_gravity() -> void:
+	velocity += get_gravity()
 
 
 func update_label() -> void:

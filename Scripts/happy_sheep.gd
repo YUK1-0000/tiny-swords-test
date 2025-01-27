@@ -3,8 +3,8 @@ extends Character
 
 
 func handle_animation() -> void:
-	if velocity == get_gravity():
-		animated_sprite.play("idle")
-	else:
+	if velocity:
 		animated_sprite.play("bouncing")
 		animated_sprite.flip_h = velocity.x < 0
+	else:
+		animated_sprite.play("idle")
