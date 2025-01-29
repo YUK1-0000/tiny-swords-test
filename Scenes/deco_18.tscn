@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://j5g1uonoy41d"]
+
+[ext_resource type="Texture2D" uid="uid://djok10sndh3wk" path="res://Assets/Tiny Swords (Update 010)/Deco/18.png" id="1_6t8bo"]
+
+[node name="Deco18" type="StaticBody3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 0)
+texture_filter = 0
+texture = ExtResource("1_6t8bo")

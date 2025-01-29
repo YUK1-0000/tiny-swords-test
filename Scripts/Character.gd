@@ -44,6 +44,7 @@ func handle_targeting() -> void:
 func handle_state() -> void:
 	if target == null:
 		set_state(States.WANDER)
+	
 	elif state != States.ATTACK:
 		set_state(States.CHASE)
 
@@ -90,7 +91,7 @@ func update_label() -> void:
 		else ""
 	) + "\n" + str(wait_timer.time_left) + "\n" + str(wander_timer.time_left)
 	
-	#label.text = ""
+	label.text = ""
 
 
 func set_state(new_state: States) -> void:

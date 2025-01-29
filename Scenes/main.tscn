@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ccyu1mktvta58"]
+[gd_scene load_steps=18 format=3 uid="uid://ccyu1mktvta58"]
 
 [ext_resource type="PackedScene" uid="uid://d2p6mwkpmnlcp" path="res://Scenes/hud.tscn" id="1_ofpb7"]
 [ext_resource type="PackedScene" uid="uid://cxcmne5sss12m" path="res://Scenes/knight_warrior.tscn" id="1_tmuvt"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://swwjcswe2oyg" path="res://Scenes/happy_sheep.tscn" id="7_hmxhu"]
 [ext_resource type="PackedScene" uid="uid://cwtx41bk01rqt" path="res://Scenes/deco_16.tscn" id="8_1o0in"]
 [ext_resource type="PackedScene" uid="uid://dk3nh0vr2d2hs" path="res://Scenes/deco_17.tscn" id="9_k4vpf"]
+[ext_resource type="PackedScene" uid="uid://j5g1uonoy41d" path="res://Scenes/deco_18.tscn" id="10_vl0jy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_io8es"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -105,6 +106,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10)
 spawnable_scene = ExtResource("2_gw2r6")
 spawn_path = NodePath("../../Goblins")
 
+[node name="HappySheepSpawners" type="Node" parent="."]
+
+[node name="CharacterSpawner" parent="HappySheepSpawners" instance=ExtResource("2_u2wyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2)
+spawnable_scene = ExtResource("7_hmxhu")
+spawn_path = NodePath("../../HappySheeps")
+
+[node name="CharacterSpawner2" parent="HappySheepSpawners" instance=ExtResource("2_u2wyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
+spawnable_scene = ExtResource("7_hmxhu")
+spawn_path = NodePath("../../HappySheeps")
+
 [node name="Knights" type="Node" parent="."]
 
 [node name="KnightWarrior" parent="Knights" instance=ExtResource("1_tmuvt")]
@@ -131,18 +144,6 @@ wall_min_slide_angle = 0.261799
 
 [node name="HappySheep" parent="HappySheeps" instance=ExtResource("7_hmxhu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0709105, 0, 0)
-
-[node name="HappySheep2" parent="HappySheeps" instance=ExtResource("7_hmxhu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
-
-[node name="HappySheep3" parent="HappySheeps" instance=ExtResource("7_hmxhu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
-
-[node name="HappySheep4" parent="HappySheeps" instance=ExtResource("7_hmxhu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-
-[node name="HappySheep5" parent="HappySheeps" instance=ExtResource("7_hmxhu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
 [node name="Trees" type="Node" parent="."]
 
@@ -186,6 +187,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -5)
 
 [node name="Deco17_2" parent="Decorations" instance=ExtResource("9_k4vpf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10)
+
+[node name="Deco18" parent="Decorations" instance=ExtResource("10_vl0jy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2)
+
+[node name="Deco18_1" parent="Decorations" instance=ExtResource("10_vl0jy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
 
 [node name="SingleDayTimer" type="Timer" parent="."]
 autostart = true

@@ -15,8 +15,8 @@ script = ExtResource("2_jrkh7")
 
 [node name="AnimatedSprite3D" parent="." index="1"]
 sprite_frames = ExtResource("2_ey1ul")
-animation = &"back_attack"
-autoplay = "default"
+animation = &"idle"
+autoplay = "idle"
 
 [node name="AttackArea" parent="." index="4"]
 collision_layer = 0

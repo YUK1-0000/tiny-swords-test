@@ -15,6 +15,7 @@ const TIME_OF_DAY: int = DAYTIME + NIGHTTIME
 @onready var camera: Camera3D = main.get_node("Camera3D")
 @onready var knight_warrior_spawners: Node = main.get_node("KnightWarriorSpawners")
 @onready var goblin_torch_spawners: Node = main.get_node("GoblinTorchSpawners")
+@onready var happy_sheep_spawners: Node = main.get_node("HappySheepSpawners")
 @onready var knights: Node = main.get_node("Knights")
 @onready var goblins: Node = main.get_node("Goblins")
 @onready var skulls: Node = main.get_node("Skulls")
@@ -62,12 +63,15 @@ func apply_incline() -> void:
 func sunrise() -> void:
 	day_timer.start()
 	
-	for spawner in knight_warrior_spawners.get_children():
+	for spawner: CharacterSpawner in knight_warrior_spawners.get_children():
+		spawner.spawn()
+	
+	for spawner: CharacterSpawner in happy_sheep_spawners.get_children():
 		spawner.spawn()
 
 
 func sunset() -> void:
-	for spawner in goblin_torch_spawners.get_children():
+	for spawner: CharacterSpawner in goblin_torch_spawners.get_children():
 		spawner.spawn()
 
 

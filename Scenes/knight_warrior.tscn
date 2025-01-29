@@ -15,7 +15,8 @@ script = ExtResource("2_ggcgk")
 
 [node name="AnimatedSprite3D" parent="." index="1"]
 sprite_frames = ExtResource("2_q0pip")
-frame_progress = 0.867015
+animation = &"idle"
+autoplay = "idle"
 
 [node name="AttackArea" parent="." index="4"]
 collision_layer = 0
