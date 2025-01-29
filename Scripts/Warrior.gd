@@ -2,9 +2,26 @@ class_name Warrior
 extends Character
 
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var attack_area: Area3D = $AttackArea
+
+
 func handle_targeting() -> void:
 	if state != States.ATTACK:
 		search_for_target()
+
+
+func search_for_target() -> void:
+	attack_area.get_node("CollisionShape3D").call_deferred("set", "disabled", true)
+	var enemies = get_enemies()
+	
+	if enemies.is_empty():
+		target = null
+	else:
+		enemies.sort_custom(sort_near)
+		target = enemies.front()
+		
+		attack_area.get_node("CollisionShape3D").call_deferred("set", "disabled", false)
 
 
 func handle_animation() -> void:
@@ -37,3 +54,11 @@ func handle_animation() -> void:
 
 func attack() -> void:
 	damage_to(target)
+
+
+func get_enemies():
+	pass
+
+
+func _on_attack_area_body_entered(_body: Node3D) -> void:
+	set_state(States.ATTACK)

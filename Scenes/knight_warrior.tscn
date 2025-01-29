@@ -1,27 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxcmne5sss12m"]
+[gd_scene load_steps=4 format=3 uid="uid://cxcmne5sss12m"]
 
-[ext_resource type="PackedScene" uid="uid://d14c0si4ht0kw" path="res://Scenes/Character.tscn" id="1_ivp8s"]
+[ext_resource type="PackedScene" uid="uid://ca6xeppqolgp1" path="res://Scenes/Warrior.tscn" id="1_her8d"]
 [ext_resource type="Script" path="res://Scripts/Knight.gd" id="2_ggcgk"]
 [ext_resource type="SpriteFrames" uid="uid://d168k0j7qh6sd" path="res://Resources/SpriteFrames/knight_warrior.tres" id="2_q0pip"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_a2cng"]
-height = 0.7
-radius = 0.6
-
-[node name="KnightWarrior" instance=ExtResource("1_ivp8s")]
+[node name="KnightWarrior" instance=ExtResource("1_her8d")]
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("2_ggcgk")
 
-[node name="AnimatedSprite3D" parent="." index="1"]
+[node name="AnimatedSprite3D" parent="." index="2"]
 sprite_frames = ExtResource("2_q0pip")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="AttackArea" parent="." index="4"]
-collision_layer = 0
 collision_mask = 4
-
-[node name="CollisionShape3D" parent="AttackArea" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.349723, 0)
-shape = SubResource("CylinderShape3D_a2cng")

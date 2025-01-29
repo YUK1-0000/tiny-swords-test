@@ -2,13 +2,5 @@ class_name Goblin
 extends Warrior
 
 
-func search_for_target() -> void:
-	var enemies = Game.get_knights() as Array[Knight]
-	
-	if enemies.is_empty():
-		target = null
-	else:
-		enemies.sort_custom(sort_near)
-		target = enemies.front()
-		for value: bool in [true, false]:
-			attack_area.get_node("CollisionShape3D").call_deferred("set", "disabled", value)
+func get_enemies() -> Array:
+	return Game.get_knights() as Array[Knight]

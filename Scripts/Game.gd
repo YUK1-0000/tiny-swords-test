@@ -27,6 +27,10 @@ const TIME_OF_DAY: int = DAYTIME + NIGHTTIME
 
 
 func _ready() -> void:
+	for tree in trees.get_children():
+		tree.get_node("AnimatedSprite3D").flip_h = randi_range(0, 1)
+	
+	
 	character_dead.connect(_on_character_dead)
 	
 	single_day_timer.timeout.connect(sunrise)

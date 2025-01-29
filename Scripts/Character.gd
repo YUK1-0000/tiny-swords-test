@@ -10,11 +10,9 @@ extends CharacterBody3D
 @export var max_wander_time: int = 5
 @export var min_wander_time: int = 0
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animated_sprite: AnimatedSprite3D = $AnimatedSprite3D
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
-@onready var attack_area: Area3D = $AttackArea
 @onready var label: Label3D = $Label
 @onready var wait_timer: Timer = $WaitTimer
 @onready var wander_timer: Timer = $WanderTimer
@@ -91,7 +89,7 @@ func update_label() -> void:
 		else ""
 	) + "\n" + str(wait_timer.time_left) + "\n" + str(wander_timer.time_left)
 	
-	label.text = ""
+	#label.text = ""
 
 
 func set_state(new_state: States) -> void:
@@ -144,10 +142,6 @@ func nearest_cardinal_direction(direction: Vector2) -> Vector2:
 		return Vector2.DOWN
 	
 	return Vector2.LEFT
-
-
-func _on_attack_area_body_entered(_body: Node3D) -> void:
-	set_state(States.ATTACK)
 
 
 func _on_wait_timer_timeout() -> void:
